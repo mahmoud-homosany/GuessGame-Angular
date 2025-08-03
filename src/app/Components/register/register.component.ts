@@ -27,9 +27,14 @@ register() {
     return;
   }
 
-  this.authService.register(this.registerDto).subscribe({
+  const requestBody = {
+    userName: this.registerDto.userName,
+    password: this.registerDto.password
+  };
+
+  this.authService.register(requestBody).subscribe({
     next: res => {
-      this.router.navigate(['/auth']); 
+      this.router.navigate(['/auth']);
     },
     error: err => {
       this.errorMessage = 'Registration failed.';
