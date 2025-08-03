@@ -14,7 +14,6 @@ export class RegisterComponent {
 registerDto = {
   userName: '',
   password: '',
-  confirmPassword: ''
 };
 
 errorMessage = '';
@@ -23,8 +22,23 @@ constructor(private authService: AuthserviceService, private router: Router) {}
 
 
 register() {
-  if (!this.registerDto.userName || !this.registerDto.password) {
+  const password = this.registerDto.password;
+
+  const hasCapital = /[A-Z]/.test(password);
+  const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+  if (!this.registerDto.userName || !password) {
     this.errorMessage = "Please fill in all fields.";
+    return;
+  }
+
+  if (!hasCapital) {
+    this.errorMessage = "Password must contain at least one uppercase letter.";
+    return;
+  }
+
+  if (!hasSymbol) {
+    this.errorMessage = "Password must contain at least one special character (e.g., #, @, !).";
     return;
   }
 
