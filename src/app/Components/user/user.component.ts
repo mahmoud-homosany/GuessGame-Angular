@@ -85,7 +85,7 @@ getUserNameFromToken(token: string | null): string {
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   const body = { userName: userName }; 
 
-  this.http.post<number>('https://localhost:7122/api/Auth/GetBestScore', body, { headers })
+  this.http.post<number>('http://guess-game.runasp.net/api/Auth/GetBestScore', body, { headers })
 .subscribe({
     next: (res) => this.bestScore = res,
     error: () => this.bestScore = null
@@ -109,7 +109,7 @@ updateScore(score: number): Observable<any> {
     bestScore: score
   };
 console.log('Sending score update:', body);
-  return this.http.post('https://localhost:7122/api/Auth/update-score', body, {
+  return this.http.post('http://guess-game.runasp.net/api/Auth/update-score', body, {
     headers: headers
   });
 }
