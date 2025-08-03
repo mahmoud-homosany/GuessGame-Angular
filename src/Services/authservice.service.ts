@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthserviceService {
- private apiUrl = 'http://guess-game.runasp.net/api/Auth';
+ private apiUrl = 'https://guess-game.runasp.net/api/Auth';
   constructor(private http: HttpClient) {}
 
 
