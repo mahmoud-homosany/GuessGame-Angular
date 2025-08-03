@@ -21,18 +21,14 @@ errorMessage = '';
 
 constructor(private authService: AuthserviceService, private router: Router) {}
 
+
 register() {
-  if (this.registerDto.password !== this.registerDto.confirmPassword) {
-    this.errorMessage = "Passwords do not match.";
+  if (!this.registerDto.userName || !this.registerDto.password) {
+    this.errorMessage = "Please fill in all fields.";
     return;
   }
 
-  const requestBody = {
-    userName: this.registerDto.userName,
-    password: this.registerDto.password
-  };
-
-  this.authService.register(requestBody).subscribe({
+  this.authService.register(this.registerDto).subscribe({
     next: res => {
       this.router.navigate(['/auth']);
     },
