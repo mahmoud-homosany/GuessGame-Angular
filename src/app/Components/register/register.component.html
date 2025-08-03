@@ -28,19 +28,6 @@
       />
     </div>
 
-    <!-- <div class="mb-3">
-      <label for="confirmPassword" class="form-label">Confirm Password</label>
-      <input
-        type="password"
-        id="confirmPassword"
-        class="form-control"
-        name="confirmPassword"
-        required
-        [(ngModel)]="registerDto.confirmPassword"
-        #confirmPassword="ngModel"
-      />
-    </div> -->
-
     <button type="submit" class="btn btn-primary w-100" [disabled]="registerForm.invalid">Register</button>
 
     <div *ngIf="errorMessage" class="text-danger mt-3 text-center">

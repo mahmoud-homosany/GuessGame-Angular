@@ -26,7 +26,7 @@ register() {
 
   const hasCapital = /[A-Z]/.test(password);
   const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
+  const hasNumber = /[0-9]/.test(password); 
   if (!this.registerDto.userName || !password) {
     this.errorMessage = "Please fill in all fields.";
     return;
@@ -41,12 +41,14 @@ register() {
     this.errorMessage = "Password must contain at least one special character (e.g., #, @, !).";
     return;
   }
-
+ if (!hasNumber) {
+    this.errorMessage = "Password must contain at least one number.";
+    return;
+  }
   this.router.navigate(['/auth']);
 
   this.authService.register(this.registerDto).subscribe({
     error: err => {
-      console.log('Backend registration failed, but user already navigated.');
     }
   });
 }
