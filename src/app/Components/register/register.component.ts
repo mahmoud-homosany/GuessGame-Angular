@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthserviceService } from '../../../Services/authservice.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule, NgModel } from '@angular/forms';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule,NgIf],
+  imports: [FormsModule,NgIf,RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -42,12 +42,11 @@ register() {
     return;
   }
 
+  this.router.navigate(['/auth']);
+
   this.authService.register(this.registerDto).subscribe({
-    next: res => {
-      this.router.navigate(['/auth']);
-    },
     error: err => {
-      this.errorMessage = 'Registration failed.';
+      console.log('Backend registration failed, but user already navigated.');
     }
   });
 }
